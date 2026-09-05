@@ -1,7 +1,7 @@
 {
   "L0001": {
     "bank_transaction_id": "B0016",
-    "match_type": "near_match"
+    "match_type": "messy"
   },
   "L0002": {
     "bank_transaction_id": "B0089",
@@ -25,11 +25,11 @@
   },
   "L0007": {
     "bank_transaction_id": "B0031",
-    "match_type": "near_match"
+    "match_type": "messy"
   },
   "L0008": {
     "bank_transaction_id": "B0136",
-    "match_type": "exact"
+    "match_type": "near_match"
   },
   "L0009": {
     "bank_transaction_id": "B0058",
@@ -93,11 +93,11 @@
   },
   "L0024": {
     "bank_transaction_id": "B0005",
-    "match_type": "near_match"
+    "match_type": "messy"
   },
   "L0025": {
     "bank_transaction_id": "B0004",
-    "match_type": "near_match"
+    "match_type": "messy"
   },
   "L0026": {
     "bank_transaction_id": "B0014",
@@ -105,7 +105,7 @@
   },
   "L0027": {
     "bank_transaction_id": "B0143",
-    "match_type": "near_match"
+    "match_type": "messy"
   },
   "L0028": {
     "bank_transaction_id": "B0024",
@@ -113,7 +113,7 @@
   },
   "L0029": {
     "bank_transaction_id": "B0026",
-    "match_type": "exact"
+    "match_type": "near_match"
   },
   "L0030": {
     "bank_transaction_id": "B0062",
@@ -149,7 +149,7 @@
   },
   "L0038": {
     "bank_transaction_id": "B0056",
-    "match_type": "near_match"
+    "match_type": "messy"
   },
   "L0039": {
     "bank_transaction_id": "B0047",
@@ -189,7 +189,7 @@
   },
   "L0048": {
     "bank_transaction_id": "B0090",
-    "match_type": "exact"
+    "match_type": "near_match"
   },
   "L0049": {
     "bank_transaction_id": null,
@@ -249,7 +249,7 @@
   },
   "L0063": {
     "bank_transaction_id": "B0054",
-    "match_type": "exact"
+    "match_type": "near_match"
   },
   "L0064": {
     "bank_transaction_id": "B0022",
@@ -297,7 +297,7 @@
   },
   "L0075": {
     "bank_transaction_id": "B0018",
-    "match_type": "near_match"
+    "match_type": "messy"
   },
   "L0076": {
     "bank_transaction_id": "B0116",
@@ -325,7 +325,7 @@
   },
   "L0082": {
     "bank_transaction_id": "B0028",
-    "match_type": "near_match"
+    "match_type": "messy"
   },
   "L0083": {
     "bank_transaction_id": "B0015",
@@ -377,7 +377,7 @@
   },
   "L0095": {
     "bank_transaction_id": "B0034",
-    "match_type": "near_match"
+    "match_type": "messy"
   },
   "L0096": {
     "bank_transaction_id": "B0065",
@@ -385,7 +385,7 @@
   },
   "L0097": {
     "bank_transaction_id": "B0113",
-    "match_type": "exact"
+    "match_type": "near_match"
   },
   "L0098": {
     "bank_transaction_id": "B0124",
@@ -393,7 +393,7 @@
   },
   "L0099": {
     "bank_transaction_id": "B0073",
-    "match_type": "near_match"
+    "match_type": "messy"
   },
   "L0100": {
     "bank_transaction_id": "B0060",
@@ -409,7 +409,7 @@
   },
   "L0103": {
     "bank_transaction_id": "B0079",
-    "match_type": "exact"
+    "match_type": "near_match"
   },
   "L0104": {
     "bank_transaction_id": "B0094",
@@ -441,7 +441,7 @@
   },
   "L0111": {
     "bank_transaction_id": "B0042",
-    "match_type": "exact"
+    "match_type": "near_match"
   },
   "L0112": {
     "bank_transaction_id": "B0142",
@@ -457,7 +457,7 @@
   },
   "L0115": {
     "bank_transaction_id": "B0055",
-    "match_type": "exact"
+    "match_type": "near_match"
   },
   "L0116": {
     "bank_transaction_id": "B0107",
@@ -493,7 +493,7 @@
   },
   "L0124": {
     "bank_transaction_id": "B0091",
-    "match_type": "near_match"
+    "match_type": "messy"
   },
   "L0125": {
     "bank_transaction_id": "B0117",
@@ -525,7 +525,7 @@
   },
   "L0132": {
     "bank_transaction_id": "B0027",
-    "match_type": "near_match"
+    "match_type": "messy"
   },
   "L0133": {
     "bank_transaction_id": "B0098",
@@ -533,7 +533,7 @@
   },
   "L0134": {
     "bank_transaction_id": "B0096",
-    "match_type": "near_match"
+    "match_type": "messy"
   },
   "L0135": {
     "bank_transaction_id": "B0122",
@@ -549,7 +549,7 @@
   },
   "L0138": {
     "bank_transaction_id": "B0072",
-    "match_type": "exact"
+    "match_type": "near_match"
   },
   "L0139": {
     "bank_transaction_id": "B0048",
@@ -561,7 +561,7 @@
   },
   "L0141": {
     "bank_transaction_id": "B0075",
-    "match_type": "exact"
+    "match_type": "near_match"
   },
   "L0142": {
     "bank_transaction_id": "B0107",
@@ -577,7 +577,7 @@
   },
   "L0145": {
     "bank_transaction_id": "B0101",
-    "match_type": "exact"
+    "match_type": "near_match"
   },
   "L0146": {
     "bank_transaction_id": "B0092",
@@ -589,7 +589,7 @@
   },
   "L0148": {
     "bank_transaction_id": "B0123",
-    "match_type": "exact"
+    "match_type": "near_match"
   },
   "L0149": {
     "bank_transaction_id": "B0137",
@@ -597,6 +597,6 @@
   },
   "L0150": {
     "bank_transaction_id": "B0017",
-    "match_type": "exact"
+    "match_type": "near_match"
   }
 }

@@ -133,6 +133,15 @@ def score_pair(ledger, bank):
 # matching
 # --------------------------------------------------------------------------- #
 
+def _text(value):
+    """A blank cell is a blank string, never the literal 'nan'.
+
+    Bank memos routinely carry no reference; how the caller happened to read the
+    CSV must not change what a missing reference scores.
+    """
+    return "" if value is None or pd.isna(value) else str(value)
+
+
 def _rows(df, has_vendor):
     out = []
     for r in df.to_dict("records"):
@@ -140,9 +149,9 @@ def _rows(df, has_vendor):
             "transaction_id": str(r["transaction_id"]),
             "date": pd.to_datetime(r["date"]),
             "amount": round(float(r["amount"]), 2),
-            "reference": r.get("reference", ""),
-            "description": r.get("description", ""),
-            "vendor": r.get("vendor", "") if has_vendor else "",
+            "reference": _text(r.get("reference", "")),
+            "description": _text(r.get("description", "")),
+            "vendor": _text(r.get("vendor", "")) if has_vendor else "",
         })
     return out
 

@@ -2,6 +2,12 @@
 
     python tests/test_matcher.py     # prints the full report
     pytest tests/test_matcher.py     # same run, asserted thresholds
+
+The expectation for each ledger row is derived from ground_truth.json, never
+from a hardcoded id: exact and near_match rows should be auto-matched, messy
+rows should be held back as exceptions, ledger-only rows should be reported
+unmatched, and a duplicate whose bank row two ledger rows claim should end up
+matched once and flagged once.
 """
 import json
 import os
@@ -17,20 +23,25 @@ from matcher import AUTO_MATCH_CONFIDENCE, match_transactions  # noqa: E402
 OUTCOMES = ("auto_correct", "auto_wrong", "exception_correct", "exception_wrong", "unmatched")
 
 
-def score():
-    """Run the matcher over the fixture and compare every ledger row to truth."""
-    ledger = pd.read_csv(os.path.join(ROOT, "data", "ledger.csv"))
-    bank = pd.read_csv(os.path.join(ROOT, "data", "bank_statement.csv"))
+def _fixture():
+    ledger = pd.read_csv(os.path.join(ROOT, "data", "ledger.csv"), keep_default_na=False)
+    bank = pd.read_csv(os.path.join(ROOT, "data", "bank_statement.csv"), keep_default_na=False)
     with open(os.path.join(ROOT, "data", "ground_truth.json")) as f:
         truth = json.load(f)
+    return ledger, bank, truth
 
+
+def score():
+    """Run the matcher over the fixture and compare every ledger row to truth."""
+    ledger, bank, truth = _fixture()
     matches, exceptions, unmatched = match_transactions(ledger, bank)
+
     got = {m.ledger_id: ("auto", m.bank_id, m.confidence) for m in matches}
     got.update({e.ledger_id: ("exception", e.bank_id, e.confidence) for e in exceptions})
     got.update({u.transaction_id: ("unmatched", None, 0.0) for u in unmatched if u.side == "ledger"})
 
-    # A duplicate whose bank row is claimed by two ledger rows is a ledger-side
-    # duplicate: one row may legitimately match, the other must be flagged.
+    # A bank row claimed by two ledger rows is a ledger-side duplicate: one row
+    # may legitimately match, the other has to be held back.
     claims = Counter(v["bank_transaction_id"] for v in truth.values() if v["bank_transaction_id"])
 
     rows = {}
@@ -45,10 +56,19 @@ def score():
             outcome = "unmatched"
         else:
             outcome = "missing"
+        shared = bool(want["bank_transaction_id"]) and claims[want["bank_transaction_id"]] > 1
+        if not want["bank_transaction_id"]:
+            expected = "unmatched"
+        elif want["match_type"] == "messy":
+            expected = "exception"
+        elif shared:
+            expected = "one_of_pair"
+        else:
+            expected = "auto"
         rows[lid] = {
             "match_type": want["match_type"],
             "expected_bank_id": want["bank_transaction_id"],
-            "shared_bank_row": claims[want["bank_transaction_id"]] > 1 if want["bank_transaction_id"] else False,
+            "expected": expected,
             "outcome": outcome,
             "got_bank_id": bank_id,
             "confidence": confidence,
@@ -56,32 +76,48 @@ def score():
     return rows, matches, exceptions, unmatched
 
 
-def metrics(rows):
+def _pct(hits, total):
+    return hits / total if total else 0.0
+
+
+def metrics(rows, exceptions=()):
     by_type = {}
     for r in rows.values():
         by_type.setdefault(r["match_type"], Counter())[r["outcome"]] += 1
 
-    # Rows that should end up on a bank row: everything ground truth gives an id for.
     payable = [r for r in rows.values() if r["expected_bank_id"]]
-    solo = [r for r in payable if not r["shared_bank_row"]]
-    ledger_only = [r for r in rows.values() if not r["expected_bank_id"]]
+    expect_auto = [r for r in payable if r["expected"] == "auto"]
+    messy = [r for r in payable if r["expected"] == "exception"]
+    ledger_only = [r for r in rows.values() if r["expected"] == "unmatched"]
 
-    # Ledger-side duplicate pairs: exactly one should match, the sibling be flagged.
     pairs = {}
     for r in rows.values():
-        if r["shared_bank_row"]:
+        if r["expected"] == "one_of_pair":
             pairs.setdefault(r["expected_bank_id"], []).append(r["outcome"])
     pairs_split = sum(1 for outs in pairs.values() if sum(o == "auto_correct" for o in outs) == 1)
+
+    # Of everything the engine put in the review queue, how much points a
+    # reviewer at the right bank row. A queue full of wrong candidates is worse
+    # than an empty one.
+    queue_correct = sum(1 for r in rows.values() if r["outcome"] == "exception_correct")
+    queue_total = len(exceptions)
 
     return {
         "by_type": by_type,
         "n": len(rows),
         "auto_correct": sum(r["outcome"] == "auto_correct" for r in rows.values()),
         "false_positives": sum(r["outcome"] == "auto_wrong" for r in rows.values()),
-        "solo_recall": sum(r["outcome"] == "auto_correct" for r in solo) / len(solo),
-        "right_candidate": sum(r["outcome"] in ("auto_correct", "exception_correct") for r in payable) / len(payable),
-        "unmatched_recall": sum(r["outcome"] == "unmatched" for r in ledger_only) / len(ledger_only),
-        "n_solo": len(solo),
+        "auto_recall": _pct(sum(r["outcome"] == "auto_correct" for r in expect_auto), len(expect_auto)),
+        "messy_flagged": _pct(sum(r["outcome"].startswith("exception") for r in messy), len(messy)),
+        "messy_right_candidate": _pct(sum(r["outcome"] == "exception_correct" for r in messy), len(messy)),
+        "messy_auto": sum(r["outcome"].startswith("auto") for r in messy),
+        "queue_precision": _pct(queue_correct, queue_total),
+        "queue_total": queue_total,
+        "right_candidate": _pct(
+            sum(r["outcome"] in ("auto_correct", "exception_correct") for r in payable), len(payable)),
+        "unmatched_recall": _pct(sum(r["outcome"] == "unmatched" for r in ledger_only), len(ledger_only)),
+        "n_auto": len(expect_auto),
+        "n_messy": len(messy),
         "n_payable": len(payable),
         "n_ledger_only": len(ledger_only),
         "pairs_split": pairs_split,
@@ -91,26 +127,30 @@ def metrics(rows):
 
 def report():
     rows, matches, exceptions, unmatched = score()
-    m = metrics(rows)
+    m = metrics(rows, exceptions)
     bank_unmatched = [u for u in unmatched if u.side == "bank"]
 
     print(f"\nRECONCILIATION ACCURACY  ({m['n']} ledger rows, auto-match threshold {AUTO_MATCH_CONFIDENCE})\n")
-    head = f"{'ground truth':<12}" + "".join(f"{o:>18}" for o in OUTCOMES)
+    head = f"{'ground truth':<14}" + "".join(f"{o:>18}" for o in OUTCOMES)
     print(head)
     print("-" * len(head))
     totals = Counter()
     for mt in sorted(m["by_type"]):
         counts = m["by_type"][mt]
         totals.update(counts)
-        print(f"{mt:<12}" + "".join(f"{counts[o]:>18}" for o in OUTCOMES))
+        print(f"{mt:<14}" + "".join(f"{counts[o]:>18}" for o in OUTCOMES))
     print("-" * len(head))
-    print(f"{'total':<12}" + "".join(f"{totals[o]:>18}" for o in OUTCOMES))
+    print(f"{'total':<14}" + "".join(f"{totals[o]:>18}" for o in OUTCOMES))
 
     print(f"\nFALSE POSITIVES (auto-matched to the wrong bank row): {m['false_positives']}"
-          f"  ({m['false_positives'] / m['n']:.1%})")
-    print(f"auto-matched to the correct bank row      {m['auto_correct']:>3}/{m['n']}"
-          f"  ({m['auto_correct'] / m['n']:.1%} of all rows)")
-    print(f"  of rows with an unshared bank partner   {m['solo_recall']:.1%}  (n={m['n_solo']})")
+          f"  ({_pct(m['false_positives'], m['n']):.1%})")
+    print(f"  of which messy rows posted without review        {m['messy_auto']}")
+    print(f"\nauto-matched to the correct bank row       {m['auto_correct']:>3}/{m['n']}"
+          f"  ({_pct(m['auto_correct'], m['n']):.1%} of all rows)")
+    print(f"  of rows that should auto-match          {m['auto_recall']:.1%}  (n={m['n_auto']})")
+    print(f"messy rows held back as exceptions        {m['messy_flagged']:.1%}  (n={m['n_messy']})")
+    print(f"  ...pointing at the right bank row       {m['messy_right_candidate']:.1%}")
+    print(f"review queue top-candidate accuracy       {m['queue_precision']:.1%}  (n={m['queue_total']})")
     print(f"correct candidate surfaced (auto or exc)  {m['right_candidate']:.1%}  (n={m['n_payable']})")
     print(f"ledger-only rows reported unmatched       {m['unmatched_recall']:.1%}  (n={m['n_ledger_only']})")
     print(f"ledger-side duplicate pairs split 1+1     {m['pairs_split']}/{m['n_pairs']}")
@@ -120,30 +160,46 @@ def report():
           f"({len(unmatched) - len(bank_unmatched)} ledger / {len(bank_unmatched)} bank)")
 
     if exceptions:
-        print("\nsample exceptions (what an auditor would read):")
-        for e in exceptions[:5]:
-            print(f"  {e.ledger_id} -> {e.bank_id}  confidence {e.confidence:.2f}  |  {'; '.join(e.reasons)}")
+        print("\nreview queue (what an auditor would read):")
+        for e in sorted(exceptions, key=lambda e: -e.confidence):
+            ok = "ok " if rows.get(e.ledger_id, {}).get("outcome") == "exception_correct" else "BAD"
+            print(f"  [{ok}] {e.ledger_id} -> {e.bank_id}  {e.confidence:.2f}  |  {'; '.join(e.reasons)}")
     return rows, m
 
 
 def test_no_false_positives():
+    """The regression that matters: nothing posted against the wrong bank row."""
     _rows, m = report()
     assert m["false_positives"] == 0, f"{m['false_positives']} rows auto-matched to the wrong bank row"
 
 
-def test_recall_on_unshared_partners():
-    m = metrics(score()[0])
-    assert m["solo_recall"] >= 0.95, m["solo_recall"]
+def test_clean_rows_auto_match():
+    rows, _matches, exceptions, _unmatched = score()
+    m = metrics(rows, exceptions)
+    assert m["auto_recall"] >= 0.95, m["auto_recall"]
+
+
+def test_messy_rows_are_held_back_for_review():
+    rows, _matches, exceptions, _unmatched = score()
+    m = metrics(rows, exceptions)
+    assert m["messy_auto"] == 0, f"{m['messy_auto']} ambiguous rows posted without review"
+    assert m["messy_flagged"] >= 0.85, m["messy_flagged"]
+
+
+def test_review_queue_points_at_the_right_row():
+    rows, _matches, exceptions, _unmatched = score()
+    m = metrics(rows, exceptions)
+    assert m["queue_precision"] >= 0.75, m["queue_precision"]
 
 
 def test_correct_candidate_surfaced():
-    m = metrics(score()[0])
-    assert m["right_candidate"] >= 0.95, m["right_candidate"]
+    rows, _matches, exceptions, _unmatched = score()
+    assert metrics(rows, exceptions)["right_candidate"] >= 0.95
 
 
 def test_ledger_only_rows_reported_unmatched():
-    m = metrics(score()[0])
-    assert m["unmatched_recall"] >= 0.80, m["unmatched_recall"]
+    rows, _matches, exceptions, _unmatched = score()
+    assert metrics(rows, exceptions)["unmatched_recall"] >= 0.80
 
 
 def test_every_row_accounted_for_once():
@@ -154,8 +210,16 @@ def test_every_row_accounted_for_once():
     assert not any(r["outcome"] == "missing" for r in rows.values())
 
 
-# --- the fixture is clean enough that nothing lands in the exception bucket, so
-# --- the below-threshold path gets its own hand-built case.
+def test_engine_leaves_exactly_the_unreferenced_bank_rows_unmatched():
+    """The bank rows ground truth never points at are the ones the engine rejects."""
+    _rows, _matches, _exceptions, unmatched = score()
+    _ledger, bank, truth = _fixture()
+    referenced = {v["bank_transaction_id"] for v in truth.values() if v["bank_transaction_id"]}
+    stray = set(bank["transaction_id"]) - referenced
+    assert {u.transaction_id for u in unmatched if u.side == "bank"} == stray
+
+
+# --- the below-threshold path also gets hand-built cases, independent of the fixture ---
 
 def _frames(bank_amount, bank_date, bank_reference, bank_description):
     ledger = pd.DataFrame([{
@@ -198,17 +262,6 @@ def test_outside_tolerance_is_unmatched_not_matched():
             *_frames(amount, date, "INV-2001", "ACH DEBIT NORTHWIND TRADIN INV2001"))
         assert matches == [] and exceptions == []
         assert {u.side for u in unmatched} == {"ledger", "bank"}
-
-
-def test_engine_leaves_exactly_the_unreferenced_bank_rows_unmatched():
-    """The 12 bank rows ground truth never points at are the 12 the engine rejects."""
-    _rows, _m, _e, unmatched = score()
-    with open(os.path.join(ROOT, "data", "ground_truth.json")) as f:
-        truth = json.load(f)
-    referenced = {v["bank_transaction_id"] for v in truth.values() if v["bank_transaction_id"]}
-    bank = pd.read_csv(os.path.join(ROOT, "data", "bank_statement.csv"))
-    stray = set(bank["transaction_id"]) - referenced
-    assert {u.transaction_id for u in unmatched if u.side == "bank"} == stray
 
 
 if __name__ == "__main__":

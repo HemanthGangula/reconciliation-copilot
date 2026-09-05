@@ -5,11 +5,11 @@ L0003,2025-08-13,14540.81,INV-1068,Ridgeline Staffing Group,Contract labor invoi
 L0004,2025-09-15,10440.32,INV-1148,Greenfield Janitorial,Cleaning services invoice INV-1148
 L0005,2025-09-19,8966.16,INV-1373,Ironclad Security Systems,Facility security invoice INV-1373
 L0006,2025-09-22,9171.16,INV-1131,Meridian Software Inc,Software subscription invoice INV-1131
-L0007,2025-07-11,2384.74,INV-1140,Harborview Properties,Office rent invoice INV-1140
-L0008,2025-08-01,9226.45,INV-1221,Cascade Office Supplies,Office supplies invoice INV-1221
+L0007,2025-07-07,14141.80,INV-1140,Acme Industrial Supply,Maintenance parts invoice INV-1140
+L0008,2025-08-05,3962.35,INV-1221,Greenfield Janitorial,Cleaning services invoice INV-1221
 L0009,2025-07-28,17331.94,INV-1305,Greenfield Janitorial,Cleaning services invoice INV-1305
 L0010,2025-09-16,17968.66,INV-1013,Fairmont Catering Co,Staff catering invoice INV-1013
-L0011,2025-07-31,13437.12,INV-1137,Lakeshore Telecom,Phone and internet invoice INV-1137
+L0011,2025-09-24,6748.27,INV-1137,Copperfield Printing,Marketing materials invoice INV-1137
 L0012,2025-09-15,10538.69,INV-1356,Lakeshore Telecom,Phone and internet invoice INV-1356
 L0013,2025-08-25,17077.25,INV-1189,Bluepeak Logistics LLC,Freight invoice INV-1189
 L0014,2025-07-18,15764.75,INV-1129,Delta Freight Systems,Freight invoice INV-1129
@@ -17,17 +17,17 @@ L0015,2025-08-07,3610.28,INV-1028,Harborview Properties,Office rent invoice INV-
 L0016,2025-09-08,14744.68,INV-1042,Orchard Data Services,Data hosting invoice INV-1042
 L0017,2025-09-17,4583.09,INV-1176,Sterling Legal Partners,Legal fees invoice INV-1176
 L0018,2025-08-18,16609.84,INV-1181,Ridgeline Staffing Group,Contract labor invoice INV-1181
-L0019,2025-07-07,8360.71,INV-1286,Orchard Data Services,Data hosting invoice INV-1286
+L0019,2025-07-31,13437.12,INV-1286,Lakeshore Telecom,Phone and internet invoice INV-1286
 L0020,2025-07-08,12259.48,INV-1276,Orchard Data Services,Data hosting invoice INV-1276
 L0021,2025-09-02,4357.50,INV-1327,Sterling Legal Partners,Legal fees invoice INV-1327
 L0022,2025-08-05,6834.67,INV-1269,Ironclad Security Systems,Facility security invoice INV-1269
 L0023,2025-07-28,13447.36,INV-1053,Lakeshore Telecom,Phone and internet invoice INV-1053
-L0024,2025-09-01,5364.20,INV-1294,Copperfield Printing,Marketing materials invoice INV-1294
-L0025,2025-07-07,8784.38,INV-1303,Acme Industrial Supply,Maintenance parts invoice INV-1303
+L0024,2025-09-02,2037.32,INV-1294,Bluepeak Logistics LLC,Freight invoice INV-1294
+L0025,2025-09-22,6023.67,INV-1303,Sterling Legal Partners,Legal fees invoice INV-1303
 L0026,2025-07-17,2934.63,INV-1084,Bluepeak Logistics LLC,Freight invoice INV-1084
-L0027,2025-08-04,16520.43,INV-1312,Lakeshore Telecom,Phone and internet invoice INV-1312
+L0027,2025-08-25,9786.68,INV-1312,Summit Equipment Rental,Equipment rental invoice INV-1312
 L0028,2025-07-07,4352.15,INV-1387,Bluepeak Logistics LLC,Freight invoice INV-1387
-L0029,2025-08-11,13358.57,INV-1075,Ironclad Security Systems,Facility security invoice INV-1075
+L0029,2025-08-15,7373.95,INV-1075,Pacific Power & Light,Utilities invoice INV-1075
 L0030,2025-07-07,140.79,INV-1211,Ridgeline Staffing Group,Contract labor invoice INV-1211
 L0031,2025-09-18,402.96,INV-1192,Delta Freight Systems,Freight invoice INV-1192
 L0032,2025-07-11,10125.46,INV-1115,Harborview Properties,Office rent invoice INV-1115
@@ -35,9 +35,9 @@ L0033,2025-08-19,4512.32,INV-1231,Ridgeline Staffing Group,Contract labor invoic
 L0034,2025-09-08,14632.38,INV-1046,Meridian Software Inc,Software subscription invoice INV-1046
 L0035,2025-07-24,8053.18,INV-1202,Lakeshore Telecom,Phone and internet invoice INV-1202
 L0036,2025-09-01,8712.54,INV-1377,Cascade Office Supplies,Office supplies invoice INV-1377
-L0037,2025-07-02,3328.36,INV-1362,Bluepeak Logistics LLC,Freight invoice INV-1362
-L0038,2025-09-08,18400.19,INV-1048,Summit Equipment Rental,Equipment rental invoice INV-1048
-L0039,2025-07-08,5236.33,INV-1326,Vantage Insurance Brokers,Insurance premium invoice INV-1326
+L0037,2025-08-04,3454.90,INV-1362,Northwind Trading Co,Inventory purchase invoice INV-1362
+L0038,2025-09-08,13314.75,INV-1048,Cascade Office Supplies,Office supplies invoice INV-1048
+L0039,2025-08-04,837.99,INV-1326,Summit Equipment Rental,Equipment rental invoice INV-1326
 L0040,2025-07-17,15807.45,INV-1156,Bluepeak Logistics LLC,Freight invoice INV-1156
 L0041,2025-09-15,12490.71,INV-1388,Greenfield Janitorial,Cleaning services invoice INV-1388
 L0042,2025-07-07,13426.02,INV-1278,Meridian Software Inc,Software subscription invoice INV-1278
@@ -46,7 +46,7 @@ L0044,2025-07-16,1793.50,INV-1089,Summit Equipment Rental,Equipment rental invoi
 L0045,2025-09-08,4702.41,INV-1118,Cascade Office Supplies,Office supplies invoice INV-1118
 L0046,2025-08-13,7342.37,INV-1301,Harborview Properties,Office rent invoice INV-1301
 L0047,2025-09-22,14296.67,INV-1183,Bluepeak Logistics LLC,Freight invoice INV-1183
-L0048,2025-08-28,12751.15,INV-1033,Ridgeline Staffing Group,Contract labor invoice INV-1033
+L0048,2025-07-07,8360.71,INV-1033,Orchard Data Services,Data hosting invoice INV-1033
 L0049,2025-07-09,14622.66,INV-1121,Greenfield Janitorial,Cleaning services invoice INV-1121
 L0050,2025-07-29,8157.99,INV-1349,Copperfield Printing,Marketing materials invoice INV-1349
 L0051,2025-09-29,16281.72,INV-1285,Greenfield Janitorial,Cleaning services invoice INV-1285
@@ -57,15 +57,15 @@ L0055,2025-08-05,6651.28,INV-1208,Bluepeak Logistics LLC,Freight invoice INV-120
 L0056,2025-09-05,17486.10,INV-1062,Pacific Power & Light,Utilities invoice INV-1062
 L0057,2025-09-17,2976.97,INV-1128,Ridgeline Staffing Group,Contract labor invoice INV-1128
 L0058,2025-08-07,5234.68,INV-1025,Ironclad Security Systems,Facility security invoice INV-1025
-L0059,2025-09-08,15806.95,INV-1040,Summit Equipment Rental,Equipment rental invoice INV-1040
+L0059,2025-09-19,16209.01,INV-1040,Northwind Trading Co,Inventory purchase invoice INV-1040
 L0060,2025-09-22,5232.58,INV-1036,Copperfield Printing,Marketing materials invoice INV-1036
 L0061,2025-09-15,779.96,INV-1348,Pacific Power & Light,Utilities invoice INV-1348
 L0062,2025-07-11,8960.26,INV-1076,Copperfield Printing,Marketing materials invoice INV-1076
-L0063,2025-08-18,13239.32,INV-1027,Greenfield Janitorial,Cleaning services invoice INV-1027
+L0063,2025-07-18,2557.03,INV-1027,Vantage Insurance Brokers,Insurance premium invoice INV-1027
 L0064,2025-09-01,13609.07,INV-1378,Pacific Power & Light,Utilities invoice INV-1378
 L0065,2025-08-20,12326.08,INV-1108,Sterling Legal Partners,Legal fees invoice INV-1108
-L0066,2025-07-24,6049.81,INV-1384,Ridgeline Staffing Group,Contract labor invoice INV-1384
-L0067,2025-09-29,11680.32,INV-1195,Ridgeline Staffing Group,Contract labor invoice INV-1195
+L0066,2025-09-01,5364.20,INV-1384,Copperfield Printing,Marketing materials invoice INV-1384
+L0067,2025-07-22,4682.03,INV-1195,Pacific Power & Light,Utilities invoice INV-1195
 L0068,2025-09-08,3681.58,INV-1052,Ridgeline Staffing Group,Contract labor invoice INV-1052
 L0069,2025-09-08,4413.73,INV-1005,Vantage Insurance Brokers,Insurance premium invoice INV-1005
 L0070,2025-09-01,6212.56,INV-1016,Summit Equipment Rental,Equipment rental invoice INV-1016
@@ -73,14 +73,14 @@ L0071,2025-08-19,14019.59,INV-1152,Fairmont Catering Co,Staff catering invoice I
 L0072,2025-09-04,12454.61,INV-1357,Fairmont Catering Co,Staff catering invoice INV-1357
 L0073,2025-09-15,2607.50,INV-1066,Meridian Software Inc,Software subscription invoice INV-1066
 L0074,2025-07-23,9661.01,INV-1155,Greenfield Janitorial,Cleaning services invoice INV-1155
-L0075,2025-07-21,9483.76,INV-1206,Fairmont Catering Co,Staff catering invoice INV-1206
+L0075,2025-08-12,15106.82,INV-1206,Harborview Properties,Office rent invoice INV-1206
 L0076,2025-09-29,8756.96,INV-1337,Fairmont Catering Co,Staff catering invoice INV-1337
 L0077,2025-08-14,2976.55,INV-1216,Ridgeline Staffing Group,Contract labor invoice INV-1216
 L0078,2025-09-18,9796.30,INV-1396,Copperfield Printing,Marketing materials invoice INV-1396
 L0079,2025-09-02,6603.78,INV-1316,Fairmont Catering Co,Staff catering invoice INV-1316
 L0080,2025-09-01,18377.81,INV-1127,Lakeshore Telecom,Phone and internet invoice INV-1127
 L0081,2025-08-07,13061.12,INV-1370,Orchard Data Services,Data hosting invoice INV-1370
-L0082,2025-08-20,16463.38,INV-1245,Delta Freight Systems,Freight invoice INV-1245
+L0082,2025-09-01,7288.23,INV-1245,Copperfield Printing,Marketing materials invoice INV-1245
 L0083,2025-09-29,3046.90,INV-1164,Vantage Insurance Brokers,Insurance premium invoice INV-1164
 L0084,2025-09-15,9122.66,INV-1098,Northwind Trading Co,Inventory purchase invoice INV-1098
 L0085,2025-09-09,330.19,INV-1359,Copperfield Printing,Marketing materials invoice INV-1359
@@ -93,27 +93,27 @@ L0091,2025-09-22,7181.67,INV-1352,Northwind Trading Co,Inventory purchase invoic
 L0092,2025-08-15,15348.91,INV-1287,Pacific Power & Light,Utilities invoice INV-1287
 L0093,2025-08-04,13190.99,INV-1250,Cascade Office Supplies,Office supplies invoice INV-1250
 L0094,2025-09-08,4702.41,INV-1118,Cascade Office Supplies,Office supplies invoice INV-1118
-L0095,2025-09-11,9069.33,INV-1215,Northwind Trading Co,Inventory purchase invoice INV-1215
+L0095,2025-09-08,18400.19,INV-1215,Summit Equipment Rental,Equipment rental invoice INV-1215
 L0096,2025-07-21,504.65,INV-1090,Ridgeline Staffing Group,Contract labor invoice INV-1090
-L0097,2025-08-22,17843.56,INV-1010,Summit Equipment Rental,Equipment rental invoice INV-1010
+L0097,2025-07-29,2021.97,INV-1010,Summit Equipment Rental,Equipment rental invoice INV-1010
 L0098,2025-08-29,7507.65,INV-1399,Ironclad Security Systems,Facility security invoice INV-1399
-L0099,2025-07-22,15711.45,INV-1105,Sterling Legal Partners,Legal fees invoice INV-1105
+L0099,2025-08-11,5864.22,INV-1105,Delta Freight Systems,Freight invoice INV-1105
 L0100,2025-07-14,3739.98,INV-1273,Cascade Office Supplies,Office supplies invoice INV-1273
 L0101,2025-08-01,485.81,INV-1083,Delta Freight Systems,Freight invoice INV-1083
-L0102,2025-08-04,837.99,INV-1355,Summit Equipment Rental,Equipment rental invoice INV-1355
-L0103,2025-09-02,17118.94,INV-1390,Lakeshore Telecom,Phone and internet invoice INV-1390
+L0102,2025-08-12,15453.68,INV-1355,Sterling Legal Partners,Legal fees invoice INV-1355
+L0103,2025-09-05,9103.77,INV-1390,Greenfield Janitorial,Cleaning services invoice INV-1390
 L0104,2025-08-27,16668.11,INV-1003,Northwind Trading Co,Inventory purchase invoice INV-1003
 L0105,2025-08-06,2044.05,INV-1372,Orchard Data Services,Data hosting invoice INV-1372
 L0106,2025-07-21,15210.82,INV-1032,Northwind Trading Co,Inventory purchase invoice INV-1032
 L0107,2025-09-30,4024.52,INV-1368,Fairmont Catering Co,Staff catering invoice INV-1368
 L0108,2025-09-01,18320.69,INV-1334,Acme Industrial Supply,Maintenance parts invoice INV-1334
 L0109,2025-07-22,9174.92,INV-1133,Pacific Power & Light,Utilities invoice INV-1133
-L0110,2025-08-08,7246.21,INV-1260,Ridgeline Staffing Group,Contract labor invoice INV-1260
-L0111,2025-08-08,6039.03,INV-1144,Lakeshore Telecom,Phone and internet invoice INV-1144
+L0110,2025-09-16,3751.48,INV-1260,Acme Industrial Supply,Maintenance parts invoice INV-1260
+L0111,2025-09-24,10745.53,INV-1144,Vantage Insurance Brokers,Insurance premium invoice INV-1144
 L0112,2025-09-22,7083.49,INV-1186,Acme Industrial Supply,Maintenance parts invoice INV-1186
 L0113,2025-07-01,3884.28,INV-1132,Sterling Legal Partners,Legal fees invoice INV-1132
 L0114,2025-07-22,16441.07,INV-1270,Bluepeak Logistics LLC,Freight invoice INV-1270
-L0115,2025-07-03,4267.88,INV-1329,Cascade Office Supplies,Office supplies invoice INV-1329
+L0115,2025-08-01,9226.45,INV-1329,Cascade Office Supplies,Office supplies invoice INV-1329
 L0116,2025-07-14,3326.09,INV-1364,Acme Industrial Supply,Maintenance parts invoice INV-1364
 L0117,2025-08-21,3851.42,INV-1340,Meridian Software Inc,Software subscription invoice INV-1340
 L0118,2025-08-18,2363.73,INV-1339,Summit Equipment Rental,Equipment rental invoice INV-1339
@@ -121,31 +121,31 @@ L0119,2025-07-15,10503.75,INV-1002,Acme Industrial Supply,Maintenance parts invo
 L0120,2025-09-15,12538.21,INV-1376,Cascade Office Supplies,Office supplies invoice INV-1376
 L0121,2025-07-18,6376.04,INV-1320,Greenfield Janitorial,Cleaning services invoice INV-1320
 L0122,2025-09-01,3198.09,INV-1289,Pacific Power & Light,Utilities invoice INV-1289
-L0123,2025-07-28,6198.10,INV-1191,Pacific Power & Light,Utilities invoice INV-1191
-L0124,2025-07-22,3865.21,INV-1012,Copperfield Printing,Marketing materials invoice INV-1012
+L0123,2025-07-28,3306.79,INV-1191,Pacific Power & Light,Utilities invoice INV-1191
+L0124,2025-08-06,3177.72,INV-1012,Delta Freight Systems,Freight invoice INV-1012
 L0125,2025-07-14,10746.15,INV-1263,Acme Industrial Supply,Maintenance parts invoice INV-1263
 L0126,2025-09-10,15808.93,INV-1172,Acme Industrial Supply,Maintenance parts invoice INV-1172
 L0127,2025-08-04,9926.51,INV-1277,Ridgeline Staffing Group,Contract labor invoice INV-1277
 L0128,2025-09-22,13632.38,INV-1149,Fairmont Catering Co,Staff catering invoice INV-1149
 L0129,2025-08-01,756.38,INV-1265,Vantage Insurance Brokers,Insurance premium invoice INV-1265
 L0130,2025-08-11,278.43,INV-1130,Vantage Insurance Brokers,Insurance premium invoice INV-1130
-L0131,2025-07-23,11062.16,INV-1182,Sterling Legal Partners,Legal fees invoice INV-1182
-L0132,2025-09-18,4525.53,INV-1024,Vantage Insurance Brokers,Insurance premium invoice INV-1024
+L0131,2025-08-08,7246.21,INV-1182,Ridgeline Staffing Group,Contract labor invoice INV-1182
+L0132,2025-07-07,7868.00,INV-1024,Vantage Insurance Brokers,Insurance premium invoice INV-1024
 L0133,2025-09-15,7704.05,INV-1185,Sterling Legal Partners,Legal fees invoice INV-1185
-L0134,2025-07-22,1615.74,INV-1122,Delta Freight Systems,Freight invoice INV-1122
+L0134,2025-07-14,3313.98,INV-1122,Cascade Office Supplies,Office supplies invoice INV-1122
 L0135,2025-09-26,1927.29,INV-1233,Ironclad Security Systems,Facility security invoice INV-1233
 L0136,2025-09-12,18085.77,INV-1074,Fairmont Catering Co,Staff catering invoice INV-1074
 L0137,2025-08-05,15476.35,INV-1138,Delta Freight Systems,Freight invoice INV-1138
-L0138,2025-09-22,18470.58,INV-1338,Delta Freight Systems,Freight invoice INV-1338
+L0138,2025-08-06,6584.32,INV-1338,Acme Industrial Supply,Maintenance parts invoice INV-1338
 L0139,2025-09-26,3116.21,INV-1151,Northwind Trading Co,Inventory purchase invoice INV-1151
-L0140,2025-07-02,16241.62,INV-1375,Pacific Power & Light,Utilities invoice INV-1375
-L0141,2025-08-04,8016.46,INV-1365,Acme Industrial Supply,Maintenance parts invoice INV-1365
+L0140,2025-07-30,213.05,INV-1375,Sterling Legal Partners,Legal fees invoice INV-1375
+L0141,2025-08-25,14498.79,INV-1365,Ridgeline Staffing Group,Contract labor invoice INV-1365
 L0142,2025-07-14,3326.09,INV-1364,Acme Industrial Supply,Maintenance parts invoice INV-1364
 L0143,2025-07-07,11967.81,INV-1049,Copperfield Printing,Marketing materials invoice INV-1049
 L0144,2025-08-19,7745.36,INV-1044,Harborview Properties,Office rent invoice INV-1044
-L0145,2025-07-28,18177.05,INV-1243,Bluepeak Logistics LLC,Freight invoice INV-1243
+L0145,2025-08-18,13239.32,INV-1243,Greenfield Janitorial,Cleaning services invoice INV-1243
 L0146,2025-09-09,11806.72,INV-1389,Pacific Power & Light,Utilities invoice INV-1389
 L0147,2025-08-11,438.55,INV-1037,Delta Freight Systems,Freight invoice INV-1037
-L0148,2025-08-06,15100.24,INV-1247,Lakeshore Telecom,Phone and internet invoice INV-1247
+L0148,2025-09-11,11028.68,INV-1247,Acme Industrial Supply,Maintenance parts invoice INV-1247
 L0149,2025-07-25,17080.33,INV-1057,Harborview Properties,Office rent invoice INV-1057
 L0150,2025-09-29,6325.65,INV-1207,Ridgeline Staffing Group,Contract labor invoice INV-1207
