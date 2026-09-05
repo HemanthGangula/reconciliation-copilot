@@ -1,0 +1,602 @@
+{
+  "L0001": {
+    "bank_transaction_id": "B0016",
+    "match_type": "near_match"
+  },
+  "L0002": {
+    "bank_transaction_id": "B0089",
+    "match_type": "duplicate"
+  },
+  "L0003": {
+    "bank_transaction_id": "B0109",
+    "match_type": "exact"
+  },
+  "L0004": {
+    "bank_transaction_id": "B0105",
+    "match_type": "exact"
+  },
+  "L0005": {
+    "bank_transaction_id": null,
+    "match_type": "unmatched"
+  },
+  "L0006": {
+    "bank_transaction_id": "B0049",
+    "match_type": "exact"
+  },
+  "L0007": {
+    "bank_transaction_id": "B0031",
+    "match_type": "near_match"
+  },
+  "L0008": {
+    "bank_transaction_id": "B0136",
+    "match_type": "exact"
+  },
+  "L0009": {
+    "bank_transaction_id": "B0058",
+    "match_type": "exact"
+  },
+  "L0010": {
+    "bank_transaction_id": "B0128",
+    "match_type": "exact"
+  },
+  "L0011": {
+    "bank_transaction_id": "B0035",
+    "match_type": "near_match"
+  },
+  "L0012": {
+    "bank_transaction_id": "B0138",
+    "match_type": "exact"
+  },
+  "L0013": {
+    "bank_transaction_id": "B0059",
+    "match_type": "exact"
+  },
+  "L0014": {
+    "bank_transaction_id": null,
+    "match_type": "unmatched"
+  },
+  "L0015": {
+    "bank_transaction_id": "B0083",
+    "match_type": "exact"
+  },
+  "L0016": {
+    "bank_transaction_id": "B0144",
+    "match_type": "exact"
+  },
+  "L0017": {
+    "bank_transaction_id": "B0149",
+    "match_type": "exact"
+  },
+  "L0018": {
+    "bank_transaction_id": "B0050",
+    "match_type": "exact"
+  },
+  "L0019": {
+    "bank_transaction_id": "B0063",
+    "match_type": "near_match"
+  },
+  "L0020": {
+    "bank_transaction_id": "B0082",
+    "match_type": "exact"
+  },
+  "L0021": {
+    "bank_transaction_id": "B0097",
+    "match_type": "exact"
+  },
+  "L0022": {
+    "bank_transaction_id": "B0134",
+    "match_type": "exact"
+  },
+  "L0023": {
+    "bank_transaction_id": "B0095",
+    "match_type": "exact"
+  },
+  "L0024": {
+    "bank_transaction_id": "B0005",
+    "match_type": "near_match"
+  },
+  "L0025": {
+    "bank_transaction_id": "B0004",
+    "match_type": "near_match"
+  },
+  "L0026": {
+    "bank_transaction_id": "B0014",
+    "match_type": "exact"
+  },
+  "L0027": {
+    "bank_transaction_id": "B0143",
+    "match_type": "near_match"
+  },
+  "L0028": {
+    "bank_transaction_id": "B0024",
+    "match_type": "exact"
+  },
+  "L0029": {
+    "bank_transaction_id": "B0026",
+    "match_type": "exact"
+  },
+  "L0030": {
+    "bank_transaction_id": "B0062",
+    "match_type": "exact"
+  },
+  "L0031": {
+    "bank_transaction_id": "B0041",
+    "match_type": "duplicate"
+  },
+  "L0032": {
+    "bank_transaction_id": "B0135",
+    "match_type": "exact"
+  },
+  "L0033": {
+    "bank_transaction_id": "B0020",
+    "match_type": "exact"
+  },
+  "L0034": {
+    "bank_transaction_id": "B0057",
+    "match_type": "exact"
+  },
+  "L0035": {
+    "bank_transaction_id": "B0127",
+    "match_type": "duplicate"
+  },
+  "L0036": {
+    "bank_transaction_id": "B0131",
+    "match_type": "exact"
+  },
+  "L0037": {
+    "bank_transaction_id": "B0104",
+    "match_type": "near_match"
+  },
+  "L0038": {
+    "bank_transaction_id": "B0056",
+    "match_type": "near_match"
+  },
+  "L0039": {
+    "bank_transaction_id": "B0047",
+    "match_type": "near_match"
+  },
+  "L0040": {
+    "bank_transaction_id": null,
+    "match_type": "unmatched"
+  },
+  "L0041": {
+    "bank_transaction_id": "B0064",
+    "match_type": "exact"
+  },
+  "L0042": {
+    "bank_transaction_id": "B0087",
+    "match_type": "exact"
+  },
+  "L0043": {
+    "bank_transaction_id": "B0133",
+    "match_type": "exact"
+  },
+  "L0044": {
+    "bank_transaction_id": "B0033",
+    "match_type": "duplicate"
+  },
+  "L0045": {
+    "bank_transaction_id": "B0103",
+    "match_type": "duplicate"
+  },
+  "L0046": {
+    "bank_transaction_id": "B0089",
+    "match_type": "duplicate"
+  },
+  "L0047": {
+    "bank_transaction_id": null,
+    "match_type": "unmatched"
+  },
+  "L0048": {
+    "bank_transaction_id": "B0090",
+    "match_type": "exact"
+  },
+  "L0049": {
+    "bank_transaction_id": null,
+    "match_type": "unmatched"
+  },
+  "L0050": {
+    "bank_transaction_id": "B0099",
+    "match_type": "duplicate"
+  },
+  "L0051": {
+    "bank_transaction_id": "B0119",
+    "match_type": "exact"
+  },
+  "L0052": {
+    "bank_transaction_id": "B0044",
+    "match_type": "exact"
+  },
+  "L0053": {
+    "bank_transaction_id": "B0043",
+    "match_type": "exact"
+  },
+  "L0054": {
+    "bank_transaction_id": "B0084",
+    "match_type": "exact"
+  },
+  "L0055": {
+    "bank_transaction_id": "B0053",
+    "match_type": "exact"
+  },
+  "L0056": {
+    "bank_transaction_id": "B0068",
+    "match_type": "exact"
+  },
+  "L0057": {
+    "bank_transaction_id": "B0112",
+    "match_type": "exact"
+  },
+  "L0058": {
+    "bank_transaction_id": "B0130",
+    "match_type": "duplicate"
+  },
+  "L0059": {
+    "bank_transaction_id": "B0121",
+    "match_type": "near_match"
+  },
+  "L0060": {
+    "bank_transaction_id": "B0081",
+    "match_type": "exact"
+  },
+  "L0061": {
+    "bank_transaction_id": "B0080",
+    "match_type": "exact"
+  },
+  "L0062": {
+    "bank_transaction_id": "B0148",
+    "match_type": "exact"
+  },
+  "L0063": {
+    "bank_transaction_id": "B0054",
+    "match_type": "exact"
+  },
+  "L0064": {
+    "bank_transaction_id": "B0022",
+    "match_type": "exact"
+  },
+  "L0065": {
+    "bank_transaction_id": "B0052",
+    "match_type": "exact"
+  },
+  "L0066": {
+    "bank_transaction_id": "B0088",
+    "match_type": "near_match"
+  },
+  "L0067": {
+    "bank_transaction_id": "B0025",
+    "match_type": "duplicate"
+  },
+  "L0068": {
+    "bank_transaction_id": "B0030",
+    "match_type": "exact"
+  },
+  "L0069": {
+    "bank_transaction_id": "B0150",
+    "match_type": "exact"
+  },
+  "L0070": {
+    "bank_transaction_id": null,
+    "match_type": "unmatched"
+  },
+  "L0071": {
+    "bank_transaction_id": "B0051",
+    "match_type": "exact"
+  },
+  "L0072": {
+    "bank_transaction_id": "B0023",
+    "match_type": "exact"
+  },
+  "L0073": {
+    "bank_transaction_id": "B0139",
+    "match_type": "exact"
+  },
+  "L0074": {
+    "bank_transaction_id": "B0013",
+    "match_type": "exact"
+  },
+  "L0075": {
+    "bank_transaction_id": "B0018",
+    "match_type": "near_match"
+  },
+  "L0076": {
+    "bank_transaction_id": "B0116",
+    "match_type": "exact"
+  },
+  "L0077": {
+    "bank_transaction_id": "B0111",
+    "match_type": "exact"
+  },
+  "L0078": {
+    "bank_transaction_id": "B0085",
+    "match_type": "exact"
+  },
+  "L0079": {
+    "bank_transaction_id": "B0009",
+    "match_type": "exact"
+  },
+  "L0080": {
+    "bank_transaction_id": "B0147",
+    "match_type": "exact"
+  },
+  "L0081": {
+    "bank_transaction_id": "B0076",
+    "match_type": "exact"
+  },
+  "L0082": {
+    "bank_transaction_id": "B0028",
+    "match_type": "near_match"
+  },
+  "L0083": {
+    "bank_transaction_id": "B0015",
+    "match_type": "exact"
+  },
+  "L0084": {
+    "bank_transaction_id": "B0061",
+    "match_type": "exact"
+  },
+  "L0085": {
+    "bank_transaction_id": "B0118",
+    "match_type": "exact"
+  },
+  "L0086": {
+    "bank_transaction_id": "B0130",
+    "match_type": "duplicate"
+  },
+  "L0087": {
+    "bank_transaction_id": "B0120",
+    "match_type": "exact"
+  },
+  "L0088": {
+    "bank_transaction_id": "B0100",
+    "match_type": "exact"
+  },
+  "L0089": {
+    "bank_transaction_id": "B0127",
+    "match_type": "duplicate"
+  },
+  "L0090": {
+    "bank_transaction_id": "B0002",
+    "match_type": "exact"
+  },
+  "L0091": {
+    "bank_transaction_id": "B0069",
+    "match_type": "exact"
+  },
+  "L0092": {
+    "bank_transaction_id": "B0141",
+    "match_type": "exact"
+  },
+  "L0093": {
+    "bank_transaction_id": "B0125",
+    "match_type": "exact"
+  },
+  "L0094": {
+    "bank_transaction_id": "B0103",
+    "match_type": "duplicate"
+  },
+  "L0095": {
+    "bank_transaction_id": "B0034",
+    "match_type": "near_match"
+  },
+  "L0096": {
+    "bank_transaction_id": "B0065",
+    "match_type": "exact"
+  },
+  "L0097": {
+    "bank_transaction_id": "B0113",
+    "match_type": "exact"
+  },
+  "L0098": {
+    "bank_transaction_id": "B0124",
+    "match_type": "exact"
+  },
+  "L0099": {
+    "bank_transaction_id": "B0073",
+    "match_type": "near_match"
+  },
+  "L0100": {
+    "bank_transaction_id": "B0060",
+    "match_type": "exact"
+  },
+  "L0101": {
+    "bank_transaction_id": "B0078",
+    "match_type": "exact"
+  },
+  "L0102": {
+    "bank_transaction_id": "B0132",
+    "match_type": "near_match"
+  },
+  "L0103": {
+    "bank_transaction_id": "B0079",
+    "match_type": "exact"
+  },
+  "L0104": {
+    "bank_transaction_id": "B0094",
+    "match_type": "exact"
+  },
+  "L0105": {
+    "bank_transaction_id": null,
+    "match_type": "unmatched"
+  },
+  "L0106": {
+    "bank_transaction_id": "B0040",
+    "match_type": "exact"
+  },
+  "L0107": {
+    "bank_transaction_id": "B0032",
+    "match_type": "exact"
+  },
+  "L0108": {
+    "bank_transaction_id": "B0093",
+    "match_type": "exact"
+  },
+  "L0109": {
+    "bank_transaction_id": "B0045",
+    "match_type": "exact"
+  },
+  "L0110": {
+    "bank_transaction_id": "B0008",
+    "match_type": "near_match"
+  },
+  "L0111": {
+    "bank_transaction_id": "B0042",
+    "match_type": "exact"
+  },
+  "L0112": {
+    "bank_transaction_id": "B0142",
+    "match_type": "exact"
+  },
+  "L0113": {
+    "bank_transaction_id": "B0001",
+    "match_type": "exact"
+  },
+  "L0114": {
+    "bank_transaction_id": "B0019",
+    "match_type": "exact"
+  },
+  "L0115": {
+    "bank_transaction_id": "B0055",
+    "match_type": "exact"
+  },
+  "L0116": {
+    "bank_transaction_id": "B0107",
+    "match_type": "duplicate"
+  },
+  "L0117": {
+    "bank_transaction_id": "B0129",
+    "match_type": "exact"
+  },
+  "L0118": {
+    "bank_transaction_id": "B0036",
+    "match_type": "exact"
+  },
+  "L0119": {
+    "bank_transaction_id": "B0012",
+    "match_type": "exact"
+  },
+  "L0120": {
+    "bank_transaction_id": "B0086",
+    "match_type": "exact"
+  },
+  "L0121": {
+    "bank_transaction_id": "B0074",
+    "match_type": "exact"
+  },
+  "L0122": {
+    "bank_transaction_id": "B0077",
+    "match_type": "exact"
+  },
+  "L0123": {
+    "bank_transaction_id": "B0140",
+    "match_type": "near_match"
+  },
+  "L0124": {
+    "bank_transaction_id": "B0091",
+    "match_type": "near_match"
+  },
+  "L0125": {
+    "bank_transaction_id": "B0117",
+    "match_type": "exact"
+  },
+  "L0126": {
+    "bank_transaction_id": "B0010",
+    "match_type": "exact"
+  },
+  "L0127": {
+    "bank_transaction_id": "B0108",
+    "match_type": "exact"
+  },
+  "L0128": {
+    "bank_transaction_id": "B0067",
+    "match_type": "exact"
+  },
+  "L0129": {
+    "bank_transaction_id": "B0070",
+    "match_type": "exact"
+  },
+  "L0130": {
+    "bank_transaction_id": "B0145",
+    "match_type": "exact"
+  },
+  "L0131": {
+    "bank_transaction_id": "B0115",
+    "match_type": "near_match"
+  },
+  "L0132": {
+    "bank_transaction_id": "B0027",
+    "match_type": "near_match"
+  },
+  "L0133": {
+    "bank_transaction_id": "B0098",
+    "match_type": "exact"
+  },
+  "L0134": {
+    "bank_transaction_id": "B0096",
+    "match_type": "near_match"
+  },
+  "L0135": {
+    "bank_transaction_id": "B0122",
+    "match_type": "exact"
+  },
+  "L0136": {
+    "bank_transaction_id": "B0039",
+    "match_type": "exact"
+  },
+  "L0137": {
+    "bank_transaction_id": "B0021",
+    "match_type": "exact"
+  },
+  "L0138": {
+    "bank_transaction_id": "B0072",
+    "match_type": "exact"
+  },
+  "L0139": {
+    "bank_transaction_id": "B0048",
+    "match_type": "exact"
+  },
+  "L0140": {
+    "bank_transaction_id": "B0006",
+    "match_type": "duplicate"
+  },
+  "L0141": {
+    "bank_transaction_id": "B0075",
+    "match_type": "exact"
+  },
+  "L0142": {
+    "bank_transaction_id": "B0107",
+    "match_type": "duplicate"
+  },
+  "L0143": {
+    "bank_transaction_id": "B0007",
+    "match_type": "exact"
+  },
+  "L0144": {
+    "bank_transaction_id": "B0110",
+    "match_type": "exact"
+  },
+  "L0145": {
+    "bank_transaction_id": "B0101",
+    "match_type": "exact"
+  },
+  "L0146": {
+    "bank_transaction_id": "B0092",
+    "match_type": "exact"
+  },
+  "L0147": {
+    "bank_transaction_id": "B0126",
+    "match_type": "exact"
+  },
+  "L0148": {
+    "bank_transaction_id": "B0123",
+    "match_type": "exact"
+  },
+  "L0149": {
+    "bank_transaction_id": "B0137",
+    "match_type": "exact"
+  },
+  "L0150": {
+    "bank_transaction_id": "B0017",
+    "match_type": "exact"
+  }
+}
