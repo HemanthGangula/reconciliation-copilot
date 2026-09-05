@@ -1,0 +1,5 @@
+# 2.2.2 is the first release that works against numpy 2.x
+pandas>=2.2.2
+
+# dev/test only
+pytest>=7.0
