@@ -2,3 +2,5 @@ __pycache__/
 *.pyc
 .env
 data/*.csv
+!data/ledger.csv
+!data/bank_statement.csv
