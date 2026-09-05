@@ -15,6 +15,7 @@ import sys
 from collections import Counter
 
 import pandas as pd
+import pytest
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "src"))
@@ -262,6 +263,59 @@ def test_outside_tolerance_is_unmatched_not_matched():
             *_frames(amount, date, "INV-2001", "ACH DEBIT NORTHWIND TRADIN INV2001"))
         assert matches == [] and exceptions == []
         assert {u.side for u in unmatched} == {"ledger", "bank"}
+
+
+
+# --- ranking when a decoy competes with the true partner --------------------- #
+# Everything above measures thresholding: is this pair good enough to post. These
+# two measure ranking: when two bank rows are both inside tolerance, does the
+# engine prefer the right one. The fixture cannot ask that question, because no
+# messy row happens to have a competitor.
+
+def _decoy_frames(decoy_reference, decoy_description):
+    """One ledger row; two bank rows inside tolerance.
+
+    B_TRUE is the real partner but wears its evidence badly: a partial reference,
+    a clipped vendor, $4 off and five days late. B_DECOY is a different vendor's
+    payment that merely happens to sit closer on amount and date.
+    """
+    ledger = pd.DataFrame([{
+        "transaction_id": "L1", "date": "2025-07-10", "amount": 1000.00,
+        "reference": "INV-1023", "vendor": "Northwind Trading Co",
+        "description": "Inventory purchase invoice INV-1023",
+    }])
+    bank = pd.DataFrame([
+        {"transaction_id": "B_TRUE", "date": "2025-07-15", "amount": 996.00,
+         "reference": "023", "description": "CHECK #4521 NORTHW"},
+        {"transaction_id": "B_DECOY", "date": "2025-07-11", "amount": 999.00,
+         "reference": decoy_reference, "description": decoy_description},
+    ])
+    return ledger, bank
+
+
+def test_a_decoy_with_an_unrelated_reference_loses_to_the_true_partner():
+    """Better amount and date must not outweigh a reference that plainly disagrees."""
+    matches, exceptions, unmatched = match_transactions(
+        *_decoy_frames("INV-7742", "ACH DEBIT MERIDIAN SOFTWAR INV-7742"))
+    assert matches == [], "neither candidate is strong enough to post unreviewed"
+    assert [e.bank_id for e in exceptions] == ["B_TRUE"], "the queue must point at the real partner"
+    assert [u.transaction_id for u in unmatched if u.side == "bank"] == ["B_DECOY"]
+
+
+@pytest.mark.xfail(strict=True, reason=(
+    "KNOWN DEFECT, reported not fixed: reference_score compares digit runs with "
+    "SequenceMatcher, so INV-1024 scores 0.75 against INV-1023 -- three shared "
+    "digits out of four. Invoice numbers are sequential by construction, so this "
+    "collision is systematic rather than rare, and 0.75 plus a strong amount and "
+    "date clears the 0.70 threshold. The decoy is auto-posted at 0.735 and the "
+    "true partner is left unmatched. Remove this marker when the scoring rule for "
+    "near-miss identifiers is decided."))
+def test_a_decoy_with_a_near_miss_invoice_number_loses_to_the_true_partner():
+    """One digit apart is a different invoice, not a 75% similar one."""
+    matches, exceptions, _unmatched = match_transactions(
+        *_decoy_frames("INV-1024", "ACH DEBIT MERIDIAN SOFTWAR INV-1024"))
+    assert [m.bank_id for m in matches] != ["B_DECOY"], "a different vendor's invoice was auto-posted"
+    assert [e.bank_id for e in exceptions] == ["B_TRUE"]
 
 
 if __name__ == "__main__":

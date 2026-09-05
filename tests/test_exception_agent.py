@@ -334,6 +334,70 @@ SUSPICIOUS = (
 )
 
 
+# --- the matcher's real exceptions, joined back to their rows ---------------- #
+# This is the natural input for the agent: the 13 messy rows the engine refused
+# to post. The join below is the one line of caller code process_exceptions asks
+# for -- exceptions carry ids, the prompt needs the rows.
+
+def messy_exceptions():
+    import pandas as pd
+    sys.path.insert(0, os.path.join(ROOT, "src"))
+    from matcher import match_transactions
+
+    ledger = pd.read_csv(os.path.join(ROOT, "data", "ledger.csv"), keep_default_na=False)
+    bank = pd.read_csv(os.path.join(ROOT, "data", "bank_statement.csv"), keep_default_na=False)
+    _matches, exceptions, _unmatched = match_transactions(ledger, bank)
+    lrows = ledger.set_index("transaction_id").to_dict("index")
+    brows = bank.set_index("transaction_id").to_dict("index")
+    return [{"ledger": {"transaction_id": e.ledger_id, **lrows[e.ledger_id]},
+             "bank": {"transaction_id": e.bank_id, **brows[e.bank_id]} if e.bank_id else None,
+             "confidence": e.confidence,
+             "reason": e.reasons}
+            for e in exceptions]
+
+
+def test_matcher_exceptions_feed_the_agent_unchanged(monkeypatch):
+    """The two modules join without an adapter, and every exception survives the trip."""
+    monkeypatch.setattr(agent, "_post", fake_post(reply(good_json("investigate"))))
+    items = messy_exceptions()
+    assert len(items) == 13, "the fixture's messy tier is the input this was built for"
+
+    reviewed = agent.process_exceptions(items)
+    assert len(reviewed) == 13
+    assert all(r["ai_review"]["recommended_action"] == "investigate" for r in reviewed)
+    assert all(r["confidence"] < agent_threshold() for r in reviewed)
+    # the engine's reasons list must reach the prompt as prose, not as a repr
+    prompt = agent.build_prompt(items[0]["ledger"], items[0]["bank"],
+                                items[0]["confidence"], items[0]["reason"])
+    assert "reference similarity" in prompt and "['" not in prompt
+
+
+def agent_threshold():
+    from matcher import AUTO_MATCH_CONFIDENCE
+    return AUTO_MATCH_CONFIDENCE
+
+
+@live
+def test_live_messy_exceptions_are_not_rubber_stamped():
+    """Feed all 13 real exceptions through and show whether the model tracks the score."""
+    items = messy_exceptions()
+    reviewed = agent.process_exceptions(items)
+
+    print(f"\n{'ledger':<8}{'bank':<8}{'engine':>8}{'model':>8}  action")
+    for r in sorted(reviewed, key=lambda r: -r["confidence"]):
+        review = r["ai_review"]
+        print(f"{r['ledger']['transaction_id']:<8}{r['bank']['transaction_id']:<8}"
+              f"{r['confidence']:>8.2f}{review['confidence']:>8.2f}  {review['recommended_action']}"
+              f"\n         {review['explanation']}")
+
+    actions = [r["ai_review"]["recommended_action"] for r in reviewed]
+    failed = [a for a in actions if a == agent.NEEDS_REVIEW]
+    print("\ncounts:", {a: actions.count(a) for a in set(actions)})
+    assert not failed, f"{len(failed)} of 13 calls failed outright"
+    assert actions.count("approve") < len(actions), \
+        "approving all 13 genuinely ambiguous rows is rubber-stamping"
+
+
 @live
 def test_live_timing_delay_is_approved():
     """Same invoice, same amount, bank posted four days later -- this is not fraud."""
