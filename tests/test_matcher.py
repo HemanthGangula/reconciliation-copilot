@@ -19,7 +19,7 @@ import pytest
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "src"))
-from matcher import AUTO_MATCH_CONFIDENCE, match_transactions  # noqa: E402
+from matcher import AUTO_MATCH_CONFIDENCE, match_transactions, reference_score  # noqa: E402
 
 OUTCOMES = ("auto_correct", "auto_wrong", "exception_correct", "exception_wrong", "unmatched")
 
@@ -293,29 +293,34 @@ def _decoy_frames(decoy_reference, decoy_description):
     return ledger, bank
 
 
-def test_a_decoy_with_an_unrelated_reference_loses_to_the_true_partner():
-    """Better amount and date must not outweigh a reference that plainly disagrees."""
+@pytest.mark.parametrize("decoy_reference, why", [
+    ("INV-7742", "an unrelated invoice number"),
+    ("INV-1024", "the next invoice number, one digit off"),
+    ("INV-1032", "the same digits transposed"),
+    ("PO54210", "the bank's own PO number"),
+])
+def test_a_decoy_never_beats_the_true_partner(decoy_reference, why):
+    """Better amount and date must not outweigh an identifier that disagrees.
+
+    Invoice numbers are issued sequentially, so the one-digit-off decoy is the
+    single most likely wrong pair in a real ledger -- it must lose, not nearly win.
+    """
     matches, exceptions, unmatched = match_transactions(
-        *_decoy_frames("INV-7742", "ACH DEBIT MERIDIAN SOFTWAR INV-7742"))
-    assert matches == [], "neither candidate is strong enough to post unreviewed"
-    assert [e.bank_id for e in exceptions] == ["B_TRUE"], "the queue must point at the real partner"
+        *_decoy_frames(decoy_reference, f"ACH DEBIT MERIDIAN SOFTWAR {decoy_reference}"))
+    assert matches == [], f"{why}: nothing here is strong enough to post unreviewed"
+    assert [e.bank_id for e in exceptions] == ["B_TRUE"], f"{why}: the queue must point at the real partner"
     assert [u.transaction_id for u in unmatched if u.side == "bank"] == ["B_DECOY"]
 
 
-@pytest.mark.xfail(strict=True, reason=(
-    "KNOWN DEFECT, reported not fixed: reference_score compares digit runs with "
-    "SequenceMatcher, so INV-1024 scores 0.75 against INV-1023 -- three shared "
-    "digits out of four. Invoice numbers are sequential by construction, so this "
-    "collision is systematic rather than rare, and 0.75 plus a strong amount and "
-    "date clears the 0.70 threshold. The decoy is auto-posted at 0.735 and the "
-    "true partner is left unmatched. Remove this marker when the scoring rule for "
-    "near-miss identifiers is decided."))
-def test_a_decoy_with_a_near_miss_invoice_number_loses_to_the_true_partner():
-    """One digit apart is a different invoice, not a 75% similar one."""
-    matches, exceptions, _unmatched = match_transactions(
-        *_decoy_frames("INV-1024", "ACH DEBIT MERIDIAN SOFTWAR INV-1024"))
-    assert [m.bank_id for m in matches] != ["B_DECOY"], "a different vendor's invoice was auto-posted"
-    assert [e.bank_id for e in exceptions] == ["B_TRUE"]
+def test_reference_score_treats_an_invoice_number_as_an_identifier():
+    """The three rules, stated as the auditor would check them."""
+    assert reference_score("INV-1023", "INV-1023") == 1.0
+    assert reference_score("INV-1023", "PMT INV 1023") == 1.0   # reformatted, same identifier
+    assert reference_score("INV-1023", "023") == 0.85           # truncated reference
+    assert reference_score("INV-1023", "INV-1024") == 0.20      # a different invoice
+    assert reference_score("INV-1023", "INV-1032") == 0.20      # transposed digits
+    assert reference_score("INV-1023", "3") == 0.20             # too short to be a truncation
+    assert reference_score("INV-1023", "") == 0.0               # nothing to compare
 
 
 if __name__ == "__main__":

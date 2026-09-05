@@ -62,15 +62,30 @@ def _digits(s):
 
 
 def reference_score(a, b):
-    """1.0 when the invoice numbers agree, however the reference is formatted.
+    """An invoice number is an identifier: either it is the same one or it is not.
 
-    'INV-1023', 'INV1023' and 'PMT INV 1023' all reduce to '1023'. When the
-    numbers differ we compare the digits, not the whole string, so a shared
-    'INV-' prefix cannot inflate the score.
+    Three rules, in order:
+      equal digits                -> 1.00  'INV-1023', 'INV1023', 'PMT INV 1023'
+      one run contains the other  -> 0.85  'INV-1023' against a truncated '023'
+      anything else               -> 0.20
+
+    The last rule is the point. Invoice numbers are issued sequentially, so
+    INV-1024 is not "75% of" INV-1023 -- it is the single most likely wrong pair
+    in the file. Scoring near misses by character overlap rewards exactly the
+    collision a reconciliation system must never make.
+
+    A containing run has to be at least three digits: '1' inside '1023' is a
+    coincidence, not a truncated reference.
+
+    References with no digits at all (free-text memos) fall back to comparing the
+    normalised text, where there is no identifier to reason about.
     """
     da, db = _digits(a), _digits(b)
     if da and db:
-        return 1.0 if da == db else SequenceMatcher(None, da, db).ratio()
+        if da == db:
+            return 1.0
+        short, long = sorted((da, db), key=len)
+        return 0.85 if len(short) >= 3 and short in long else 0.20
     return SequenceMatcher(None, _norm(a), _norm(b)).ratio()
 
 
