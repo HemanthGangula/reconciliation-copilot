@@ -3,3 +3,6 @@ pandas>=2.2.2
 
 # dev/test only
 pytest>=7.0
+
+# The TensorMux client is stdlib urllib.request -- neither requests nor httpx was
+# already a dependency, and one POST does not justify adding one.
